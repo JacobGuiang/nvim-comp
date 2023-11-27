@@ -84,10 +84,12 @@ require('lazy').setup({
   },
 
   {
-    -- Autopairs
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    opts = {},
+    opts = {
+      enable_check_bracket_line = true,
+      ignored_next_char = '[%w]' -- will ignore alphanumeric
+    },
   },
 
   {
@@ -137,12 +139,12 @@ vim.o.completeopt = 'menuone,noselect'
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Compile and Run
-vim.keymap.set('n', '<F9>', ':w <bar> :!g++ -std=c++2a -Wall -Wextra -O2 % -o %:r<CR>', { desc = 'Compile' })
-vim.keymap.set('n', '<F10>', ':term ./%:r<CR>', { desc = 'Run' })
+vim.keymap.set('n', '<F9>', ':w <bar> :!g++ -std=c++2a -Wall -Wextra -O2 % -o %:r<CR>')
+vim.keymap.set('n', '<F10>', ':term ./%:r<CR>')
 
 -- Cycle buffer
-vim.keymap.set('n', '<Tab>', ':bnext<CR>')
-vim.keymap.set('n', '<S-Tab>', ':bprev<CR>')
+vim.keymap.set('n', '<Tab>', ':bnext<CR>', { silent = true })
+vim.keymap.set('n', '<S-Tab>', ':bprev<CR>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
