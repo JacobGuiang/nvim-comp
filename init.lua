@@ -79,6 +79,13 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+
+  {
+    -- Autopairs
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    opts = {}
+  },
 }, {})
 
 -- [[ Setting options ]]
