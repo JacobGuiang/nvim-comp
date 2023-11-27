@@ -4,7 +4,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- [[ Install `lazy.nvim` plugin manager ]]
---    :help lazy.nvim.txt
+-- :help lazy.nvim.txt
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -58,7 +58,14 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- :help ibl
     main = 'ibl',
-    opts = {},
+    opts = {
+      scope = {
+        enabled = false,
+      },
+      indent = {
+        smart_indent_cap = false,
+      }
+    },
   },
 
   -- "gc" to comment visual regions/lines
