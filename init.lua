@@ -3,6 +3,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 -- :help lazy.nvim.txt
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -64,7 +67,7 @@ require('lazy').setup({
       },
       indent = {
         smart_indent_cap = false,
-      }
+      },
     },
   },
 
@@ -84,7 +87,15 @@ require('lazy').setup({
     -- Autopairs
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    opts = {}
+    opts = {},
+  },
+
+  {
+    -- Tabline
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {},
   },
 }, {})
 
@@ -121,15 +132,17 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
-vim.o.termguicolors = true
-
 -- [[ Keymaps ]]
 -- :help vim.keymap.set()
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Compile and Run
-vim.keymap.set('n', '<F9>', ':w <bar> :!g++ -std=c++2a -Wall -Wextra -O2 % -o %:r<cr>', { desc = 'Compile' })
-vim.keymap.set('n', '<F10>', ':term ./%:r<cr>', { desc = 'Run' })
+vim.keymap.set('n', '<F9>', ':w <bar> :!g++ -std=c++2a -Wall -Wextra -O2 % -o %:r<CR>', { desc = 'Compile' })
+vim.keymap.set('n', '<F10>', ':term ./%:r<CR>', { desc = 'Run' })
+
+-- Cycle buffer
+vim.keymap.set('n', '<Tab>', ':bnext<CR>')
+vim.keymap.set('n', '<S-Tab>', ':bprev<CR>')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
