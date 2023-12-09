@@ -81,16 +81,6 @@ require('lazy').setup({
   },
 
   {
-    -- Autopairs
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    opts = {
-      enable_check_bracket_line = true,
-      ignored_next_char = '[%w]' -- will ignore alphanumeric
-    },
-  },
-
-  {
     -- Tabline
     'akinsho/bufferline.nvim',
     version = '*',
@@ -135,6 +125,12 @@ vim.o.completeopt = 'menuone,noselect'
 -- [[ Keymaps ]]
 -- :help vim.keymap.set()
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Auto pair {
+vim.keymap.set('i', '{', '{}<Left>');
+vim.keymap.set('i', '{<CR>', '{<CR>}<Esc>O');
+vim.keymap.set('i', '{{', '{');
+vim.keymap.set('i', '{}', '{}');
 
 -- Compile and Run
 vim.keymap.set('n', '<F9>', ':w <bar> :!g++ -std=c++2a -Wall -Wextra -O2 % -o %:r<CR>')
